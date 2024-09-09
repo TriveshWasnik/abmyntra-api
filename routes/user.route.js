@@ -11,7 +11,7 @@ import { logoutUser } from "../controllers/user/logoutUser.js";
 const router = Router();
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
-router.route("/logout").get(verifyJWT, logoutUser);
+router.route("/logout").get(logoutUser);
 router.route("/delete").delete(verifyJWT, deleteUser);
 router.route("/profile").get(verifyJWT, profileUser);
 router.route("/update").put(verifyJWT, updateUser);

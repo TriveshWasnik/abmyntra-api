@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
 export const verifyJWT = async function (req, res, next) {
   try {
     // get the token from browser cookie

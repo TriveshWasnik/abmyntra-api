@@ -40,7 +40,7 @@ export const loginUser = async function (req, res) {
       maxAge: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "None",
     })
     .json({
       data: user,

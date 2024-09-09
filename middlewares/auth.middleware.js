@@ -3,7 +3,7 @@ import { User } from "../models/user.model.js";
 export const verifyJWT = async function (req, res, next) {
   try {
     // get the token from browser cookie
-    const token = req.cookies?.token;
+    const token = req?.cookies?.token;
 
     // check the token
     if (!token) {

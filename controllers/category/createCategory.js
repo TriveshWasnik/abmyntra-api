@@ -7,14 +7,6 @@ export const createCategory = async function (req, res) {
   try {
     const { name, url, desc, parentCategory, status } = req.body;
 
-    /*
-    if (!name) {
-      return res
-        .status(400)
-        .json({ message: "Category Name is required", success: "false" });
-    }
-    */
-
     // check if Product already exists
     const existCategory = await Category.findOne({ name });
     if (existCategory) {
@@ -25,12 +17,13 @@ export const createCategory = async function (req, res) {
     }
 
     let categoryImageLocalPath = req.files?.categoryPic[0]?.path;
+    console.log(categoryImageLocalPath);
 
-    if (!categoryImageLocalPath) {
+    /* if (!categoryImageLocalPath) {
       return res
         .status(400)
         .json({ message: "Category image is required", success: false });
-    }
+    } */
 
     const categoryPic = await uploadOnCloudinary(categoryImageLocalPath);
 

@@ -19,11 +19,11 @@ export const createCategory = async function (req, res) {
     let categoryImageLocalPath = req.files?.categoryPic[0]?.path;
     console.log(categoryImageLocalPath);
 
-    /* if (!categoryImageLocalPath) {
+    if (!categoryImageLocalPath) {
       return res
         .status(400)
         .json({ message: "Category image is required", success: false });
-    } */
+    }
 
     const categoryPic = await uploadOnCloudinary(categoryImageLocalPath);
 

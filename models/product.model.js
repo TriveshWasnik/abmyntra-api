@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    url: { type: String, required: true },
+    name: { type: String },
+    url: { type: String },
     parentCategory: { type: Array },
     brand: { type: String, default: null },
     productImage1: { type: String, default: null },
@@ -14,9 +14,9 @@ const productSchema = new mongoose.Schema(
     size: { type: String, default: null },
     color: { type: String, default: null },
 
-    description: { type: String, required: true },
-    shortDescription: { type: String, required: true },
-    mrpPrice: { type: Number, required: true },
+    description: { type: String },
+    shortDescription: { type: String },
+    mrpPrice: { type: Number },
     sellingPrice: { type: Number, default: 0 },
     stock: { type: Number, default: 0 },
     weight: { type: Number, default: 0 },

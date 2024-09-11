@@ -26,14 +26,7 @@ export const createProduct = async function (req, res) {
     } = req.body;
 
     // validation - not empty field
-    if (
-      !name ||
-      !url ||
-      !parentCategory ||
-      !description ||
-      !shortDescription ||
-      !mrpPrice
-    ) {
+    if (!name || !url || !description || !shortDescription || !mrpPrice) {
       return res
         .status(400)
         .json({ message: "All fields are required", success: "false" });

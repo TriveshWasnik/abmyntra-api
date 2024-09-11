@@ -13,16 +13,16 @@ export const createProduct = async function (req, res) {
       sku,
       size,
       color,
-      description,
-      shortDescription,
-      mrpPrice,
-      sellingPrice,
-      stock,
-      weight,
-      weightType,
-      metaTitle,
-      metaDescription,
-      metaKeywords,
+      //description,
+      //shortDescription,
+      //mrpPrice,
+      //sellingPrice,
+      //stock,
+      //weight,
+      //weightType,
+      //metaTitle,
+      //metaDescription,
+      //metaKeywords
     } = req.body;
 
     // validation - not empty field
@@ -41,7 +41,7 @@ export const createProduct = async function (req, res) {
       });
     }
 
-    let productImage1LocalPath = req.files?.productImage1[0]?.path;
+    /*  let productImage1LocalPath = req.files?.productImage1[0]?.path;
     let productImage2LocalPath = req.files?.productImage2[0]?.path;
     let productImage3LocalPath = req.files?.productImage3[0]?.path;
     let productImage4LocalPath = req.files?.productImage4[0]?.path;
@@ -55,35 +55,35 @@ export const createProduct = async function (req, res) {
       return res
         .status(400)
         .json({ message: "Product image is required", success: false });
-    }
+    } 
 
     const productPic1 = await uploadOnCloudinary(productImage1LocalPath);
     const productPic2 = await uploadOnCloudinary(productImage2LocalPath);
     const productPic3 = await uploadOnCloudinary(productImage3LocalPath);
-    const productPic4 = await uploadOnCloudinary(productImage4LocalPath);
+    const productPic4 = await uploadOnCloudinary(productImage4LocalPath); */
 
     const product = await Product.create({
       name,
       url: slugify(url.toLowerCase()),
-      // parentCategory,
+      //parentCategory,
       brand,
-      productImage1: productPic1?.url || "",
-      productImage2: productPic2?.url || "",
-      productImage3: productPic3?.url || "",
-      productImage4: productPic4?.url || "",
+      //productImage1: productPic1?.url || "",
+      //productImage2: productPic2?.url || "",
+      //productImage3: productPic3?.url || "",
+      // productImage4: productPic4?.url || "",
       sku,
       size,
       color,
-      description,
-      shortDescription,
-      mrpPrice,
-      sellingPrice,
-      stock,
-      weight,
-      weightType,
-      metaTitle,
-      metaDescription,
-      metaKeywords,
+      //description,
+      //shortDescription,
+      //mrpPrice,
+      //sellingPrice,
+      //stock,
+      //weight,
+      //weightType,
+      //metaTitle,
+      //metaDescription,
+      //metaKeywords,
     });
 
     return res.status(201).json({

@@ -32,9 +32,6 @@ export const createProduct = async function (req, res) {
       !parentCategory ||
       !description ||
       !shortDescription ||
-      !metaTitle ||
-      !metaDescription ||
-      !metaKeywords ||
       !mrpPrice
     ) {
       return res
@@ -74,7 +71,7 @@ export const createProduct = async function (req, res) {
 
     const product = await Product.create({
       name,
-      url: slugify(url),
+      url: slugify(url.toLowerCase()),
       productImage1: productPic1?.url || "",
       productImage2: productPic2?.url || "",
       productImage3: productPic3?.url || "",

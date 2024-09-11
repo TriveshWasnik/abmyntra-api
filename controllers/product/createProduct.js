@@ -26,18 +26,11 @@ export const createProduct = async function (req, res) {
     } = req.body;
 
     // validation - not empty field
-    if (
-      !name ||
-      !url ||
-      !sku ||
-      !description ||
-      !shortDescription ||
-      !mrpPrice
-    ) {
+    /*  if (!name || !url || !description || !shortDescription || !mrpPrice) {
       return res
         .status(400)
         .json({ message: "All fields are required", success: "false" });
-    }
+    } */
 
     // check if Product already exists
     const existProduct = await Product.findOne({ name });

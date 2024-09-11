@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     url: { type: String, required: true },
-    //parentCategory: { type: Array },
+    parentCategory: { type: Array },
     brand: { type: String, default: null },
     //productImage1: { type: String, default: null },
     //productImage2: { type: String, default: null },

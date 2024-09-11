@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import { Product } from "../../models/product.model.js";
 import { uploadOnCloudinary } from "../../util/cloudinary.js";
+import { Error } from "mongoose";
 
 // create a product
 export const createProduct = async function (req, res) {
@@ -93,8 +94,10 @@ export const createProduct = async function (req, res) {
     });
   } catch (error) {
     console.log(error.message);
-    res
-      .status(400)
-      .json({ message: "Error in Create a Product API", success: false });
+    res.status(400).json({
+      message: "Error in Create a Product API",
+      success: false,
+      error,
+    });
   }
 };

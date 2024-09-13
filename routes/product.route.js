@@ -41,5 +41,4 @@ router.route("/:id").put(
 
 router.route("/products-category/:id").get(listProductByCategory);
 
-router.route("/scrappedData").get(getScrappedData);
 export default router;

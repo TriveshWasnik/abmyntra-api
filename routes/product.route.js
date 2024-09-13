@@ -7,7 +7,6 @@ import { singleProduct } from "../controllers/product/singleProduct.js";
 import { deleteProduct } from "../controllers/product/deleteProduct.js";
 import { updateProduct } from "../controllers/product/updateProduct.js";
 import { listProductByCategory } from "../controllers/product/listProductByCategory.js";
-import { getScrappedData } from "../controllers/product/getScrappedData.js";
 
 const router = Router();
 

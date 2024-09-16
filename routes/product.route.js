@@ -7,6 +7,7 @@ import { singleProduct } from "../controllers/product/singleProduct.js";
 import { deleteProduct } from "../controllers/product/deleteProduct.js";
 import { updateProduct } from "../controllers/product/updateProduct.js";
 import { listProductByCategory } from "../controllers/product/listProductByCategory.js";
+import { updateWishlistStatus } from "../controllers/product/updateWishlistStatus.js";
 
 const router = Router();
 
@@ -37,6 +38,8 @@ router.route("/:id").put(
   ]),
   updateProduct
 );
+
+router.route("/:id/wishlist").put(verifyJWT, updateWishlistStatus);
 
 router.route("/products-category/:id").get(listProductByCategory);
 

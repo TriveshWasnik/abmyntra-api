@@ -38,8 +38,6 @@ router.route("/:id").put(
   updateProduct
 );
 
-router.route("/:id/wishlist").put(verifyJWT, updateWishlistStatus);
-
 router.route("/products-category/:id").get(listProductByCategory);
 
 export default router;

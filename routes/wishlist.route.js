@@ -6,7 +6,7 @@ import { listWishProduct } from "../controllers/wishlist/listWishlist.js";
 import { addProductWishlist } from "../controllers/wishlist/addProductWishlist.js";
 const router = Router();
 
-router.route("/addwishlist").put(verifyJWT, addProductWishlist);
+router.route("/addwishlist/:id").put(verifyJWT, addProductWishlist);
 router.route("/deleteProduct/:id").put(verifyJWT, deleteProductFromWishlist);
 router.route("/list").get(verifyJWT, listWishProduct);
 export default router;

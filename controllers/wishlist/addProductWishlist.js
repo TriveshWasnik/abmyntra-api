@@ -5,7 +5,7 @@ import { Wishlist } from "../../models/wishlist.model.js";
 export const addProductWishlist = async function (req, res) {
   try {
     const userId = req.id;
-    console.log(req.params);
+
     if (userId) {
       const prod = await Product.findByIdAndUpdate(
         req.params.id,

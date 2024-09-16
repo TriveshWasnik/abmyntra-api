@@ -30,6 +30,7 @@ export const addProductWishlist = async function (req, res) {
     res.status(400).json({
       message: "Error in Add Product in a Wishlist API",
       success: false,
+      error,
     });
   }
 };

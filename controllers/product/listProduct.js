@@ -6,7 +6,7 @@ export const listProduct = async function (req, res) {
     const products = await Product.find({}).sort({ createdAt: -1 });
     return res.status(200).json({
       data: products,
-      totel: products.length,
+      total: products.length,
       success: true,
     });
   } catch (error) {

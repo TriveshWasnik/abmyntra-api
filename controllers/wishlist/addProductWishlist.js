@@ -5,7 +5,7 @@ import { Wishlist } from "../../models/wishlist.model.js";
 export const addProductWishlist = async function (req, res) {
   try {
     const userId = req.id;
-
+    let wishData = null;
     if (userId) {
       const prod = await Product.findByIdAndUpdate(
         req.params.id,
@@ -13,16 +13,16 @@ export const addProductWishlist = async function (req, res) {
         { new: true }
       );
 
-      await Wishlist.create({
+      wishData = await Wishlist.create({
         productName: prod.name,
-        productId: req.params.id,
-        userId: req.id,
+        product: req.params.id,
+        userId: userId,
       });
     }
 
     return res.status(201).json({
       message: "Product Added in Wishlist",
-      // data: wishlistStatus,
+      data: wishData,
       success: true,
     });
   } catch (error) {

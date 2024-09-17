@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { Product } from "../../models/product.model.js";
-import { Wishlist } from "../../models/wishlist.model.js";
 
 // get category by Id
 export const singleProduct = async function (req, res) {

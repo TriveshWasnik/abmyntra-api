@@ -16,7 +16,7 @@ export const addProductWishlist = async function (req, res) {
       wishData = await Wishlist.create({
         productName: prod.name,
         product: req.params.id,
-        userId: userId,
+        user: userId,
       });
     }
 

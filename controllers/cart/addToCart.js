@@ -28,10 +28,10 @@ export const addToCart = async function (req, res) {
   
 
   catch (error) {
-    console.log(error.message);
+    console.log(error);
     res
       .status(400)
-      .json({ message: "Error in Create a Add to Cart API", success: false });
+      .json({ message: "Error in Create a Add to Cart API", success: false, error });
   }
 
 };

@@ -6,8 +6,7 @@ export const verifyJWT = async function (req, res, next) {
   try {
     // get the token from browser cookie
     const token =
-      req?.cookies?.token ||
-      req.header("Authorization")?.replace("Bearer ", "");
+      req?.cookies?.token || req.headers.authorization.split(" ")[1];
 
     // check the token
     if (!token) {
@@ -18,16 +17,11 @@ export const verifyJWT = async function (req, res, next) {
     }
 
     // decode the  token
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
 
-    const user = await User.findById(decodedToken?._id).select("-password");
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid Token", success: false });
-    }
     // token userId copied in request
-    req.id = user._id;
-    req.user = user;
+    req.id = decoded._id;
+    req.user = decoded;
 
     next();
   } catch (error) {

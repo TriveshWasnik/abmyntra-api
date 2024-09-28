@@ -5,7 +5,7 @@ import { deleteFromCart } from "../controllers/cart/deleteFromCart.js";
 import { cartListUser } from "../controllers/cart/cartListUser.js";
 const router = Router();
 
-router.route("/addToCart").post(verifyJWT, addToCart);
-router.route("/:id").delete(verifyJWT, deleteFromCart);
-router.route("/cartlistuser").get(verifyJWT, cartListUser);
+router.route("/add").post(verifyJWT, addToCart);
+router.route("/delete").delete(verifyJWT, deleteFromCart);
+router.route("/cart").get(verifyJWT, cartListUser);
 export default router;

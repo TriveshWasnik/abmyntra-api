@@ -1,5 +1,5 @@
 import { User } from "../../models/user.model.js";
-
+import mongoose from 'mongoose';
 // add to cart product
 export const addToCart = async function (req, res) {
   
@@ -8,14 +8,14 @@ export const addToCart = async function (req, res) {
     const userJWT = req.user;
     const user = await User.findById(userJWT.id);
     const existingCartItemIndex = user.cart.findIndex((item) =>
-      item?.product?.equals(productId)
+      item?.product?.equals(mongoose.Types.ObjectId(productId))
     );
     if (existingCartItemIndex !== -1) {
       // Product is already in the cart, update the quantity
       user.cart[existingCartItemIndex].quantity += quantity;
     } else {
       // Product is not in the cart, add it
-      user.cart.push({ product: productId, quantity });
+      user.cart.push({ product: mongoose.Types.ObjectId(productId), quantity });
     }
     await user.save();
 

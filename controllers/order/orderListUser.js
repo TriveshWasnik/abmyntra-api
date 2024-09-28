@@ -5,19 +5,9 @@ import { Order } from "../../models/order.model.js";
 export const orderListUser = async function (req, res) {
   try {
    
-   const { productId } = req.body;
-    const userJWT = req.user;
-    const user = await User.findById(userJWT.id);
-
-    if (!user.favourites.includes(productId)) {
-      user.favourites.push(productId);
-      await user.save();
-    }
-
-    return res
-      .status(200)
-      .json({ message: "Product added to favorites successfully", user });
-
+   const user = req.user;
+    const orders = await Orders.find({ user: user.id });
+    return res.status(200).json(orders);
    
   } catch (error) {
     console.log(error.message);

@@ -2,6 +2,7 @@ import { User } from "../../models/user.model.js";
 
 // delete product From Cart
 export const deleteFromCart = async function (req, res) {
+  
   try {
     
     const { productId, quantity } = req.body;
@@ -25,10 +26,11 @@ export const deleteFromCart = async function (req, res) {
       message: `Cart items deleted successfully `,
       success: true,
     });
-  } catch (error) {
-    console.log(error.message);
-    res
-      .status(400)
-      .json({ message: "Error in Cart Item Delete API", success: false });
+  } 
   }
+    catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Error in Cart Item Delete API", success: false });
+  }
+  
 };

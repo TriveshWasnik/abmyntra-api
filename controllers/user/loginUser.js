@@ -34,6 +34,8 @@ export const loginUser = async function (req, res) {
     expiresIn: "15d",
   });
 
+  
+
   return res
     .status(200)
     .cookie("token", token, {

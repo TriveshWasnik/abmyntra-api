@@ -2,6 +2,7 @@ import { User } from "../../models/user.model.js";
 
 // add to cart product
 export const addToCart = async function (req, res) {
+  
   try {
      const { productId, quantity } = req.body;
     const userJWT = req.user;
@@ -24,10 +25,13 @@ export const addToCart = async function (req, res) {
         success: true,
       });
     }
-  } catch (error) {
+  
+
+  catch (error) {
     console.log(error.message);
     res
       .status(400)
       .json({ message: "Error in Create a Add to Cart API", success: false });
   }
+
 };

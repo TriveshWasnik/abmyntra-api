@@ -6,7 +6,7 @@ export const createOrder = async function (req, res) {
    const { products, address, totalAmount } = req.body;
     const userJWT = req.user;
     const user = await User.findById(userJWT.id);
-    const order = new Orders({
+    const order = new Order({
       products,
       user: user._id,
       total_amount: totalAmount,

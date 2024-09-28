@@ -1,8 +1,6 @@
 import { Order } from "../../models/order.model.js";
 import { User } from "../../models/user.model.js";
-import { sendMail } from "../../util/nodemailer.js";
 
-// create a new category
 export const createOrder = async function (req, res) {
   try {
    const { products, address, totalAmount } = req.body;

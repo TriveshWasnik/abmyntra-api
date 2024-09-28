@@ -1,25 +1,19 @@
-import { Product } from "../../models/product.model.js";
-import { Wishlist } from "../../models/wishlist.model.js";
+import { User } from "../../models/user.model.js";
+
 
 // delete a product in wishlist
 export const deleteProductFromWishlist = async function (req, res) {
   try {
-    const userId = req.id;
+     const { productId } = req.body;
+    const userJWT = req.user;
+    const user = await User.findById(userJWT.id);
 
-    if (userId) {
-      const prod = await Product.findByIdAndUpdate(
-        req.params.id,
-        { wishlistStatus: false },
-        { new: true }
-      );
-
-      const wishProduct = await Wishlist.findOne({ productName: prod.name });
-      await wishProduct.deleteOne();
-    }
+    user.favourites = user.favourites.filter((fav) => !fav.equals(productId));
+    await user.save();
 
     return res.status(201).json({
       message: "Product Deleted from Wishlist",
-      // data: wishlistStatus,
+      data: user.favourites,
       success: true,
     });
   } catch (error) {

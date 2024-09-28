@@ -20,6 +20,25 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       minLength: [6, "Password length should be greater than 6 character"],
     },
+    cart: {
+      type: [
+        {
+          product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+          quantity: { type: Number, default: 1 },
+        },
+      ],
+      default: [],
+    },
+    favourites: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Product",
+      default: [],
+    },
+    orders: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Order",
+      default: [],
+    },
     status: { type: String, default: "Active" },
     isAdmin: { type: Boolean, default: false },
   },

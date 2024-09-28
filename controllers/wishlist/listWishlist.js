@@ -7,7 +7,7 @@ export const listWishProduct = async function (req, res) {
     const user = await User.findById(userId).populate("favourites").exec();
     
     return res.status(200).json({
-     user.favourites,
+     data: user.favourites,
       success: true,
     });
   } catch (error) {

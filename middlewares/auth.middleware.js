@@ -5,8 +5,7 @@ dotenv.config({ path: "../.env" });
 export const verifyJWT = async function (req, res, next) {
   try {
     // get the token from browser cookie
-    const token =
-      req?.cookies?.token || req.headers.authorization.split(" ")[1];
+    const token = req?.cookies?.token;
 
     // check the token
     if (!token) {

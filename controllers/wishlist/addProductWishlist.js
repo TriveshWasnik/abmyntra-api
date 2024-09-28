@@ -1,28 +1,19 @@
-import { Product } from "../../models/product.model.js";
-import { Wishlist } from "../../models/wishlist.model.js";
+import { User } from "../../models/user.model.js";
 
 // add a product in wishlist
 export const addProductWishlist = async function (req, res) {
   try {
-    const userId = req.id;
-    let wishData = null;
-    if (userId) {
-      const prod = await Product.findByIdAndUpdate(
-        req.params.id,
-        { wishlistStatus: true },
-        { new: true }
-      );
+   const { productId } = req.body;
+    const userJWT = req.user;
+    const user = await User.findById(userJWT.id);
 
-      wishData = await Wishlist.create({
-        productName: prod.name,
-        product: req.params.id,
-        user: userId,
-      });
+    if (!user.favourites.includes(productId)) {
+      user.favourites.push(productId);
+      await user.save();
     }
-
     return res.status(201).json({
       message: "Product Added in Wishlist",
-      data: wishData,
+      data: user.favourites,
       success: true,
     });
   } catch (error) {

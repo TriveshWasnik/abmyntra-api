@@ -1,37 +1,26 @@
-import { Cart } from "../../models/cart.model.js";
+import { User } from "../../models/user.model.js";
 
 // add to cart product
 export const addToCart = async function (req, res) {
   try {
-    const { productName, productId, productQuantity, orderStatus, orderId } =
-      req.body;
-
-    const userId = req.id;
-
-    const existingCartItem = await Cart.findOne({
-      productId,
-      userId,
-      orderStatus: "add to cart",
-    });
-
-    if (existingCartItem) {
-      existingCartItem.productQuantity += productQuantity;
-      await existingCartItem.save();
-      return res.status(200).json({
-        message: "Product Added to Cart Successfully",
-        data: existingCartItem,
-        success: true,
-      });
+     const { productId, quantity } = req.body;
+    const userJWT = req.user;
+    const user = await User.findById(userJWT.id);
+    const existingCartItemIndex = user.cart.findIndex((item) =>
+      item?.product?.equals(productId)
+    );
+    if (existingCartItemIndex !== -1) {
+      // Product is already in the cart, update the quantity
+      user.cart[existingCartItemIndex].quantity += quantity;
     } else {
-      const addProduct = await Cart.create({
-        productName,
-        productId,
-        productQuantity,
-        userId,
-      });
+      // Product is not in the cart, add it
+      user.cart.push({ product: productId, quantity });
+    }
+    await user.save();
+
       return res.status(200).json({
         message: "Product Added to Cart Successfully",
-        data: addProduct,
+        data: user.cart,
         success: true,
       });
     }
